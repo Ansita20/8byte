@@ -14,12 +14,19 @@ import {
   summarize,
   totalInvestment,
 } from "@/lib/calculations";
-import { colorClass, formatMoney, formatPercent } from "@/lib/format";
+import { arrow, colorClass, formatMoney, formatPercent } from "@/lib/format";
+import { PriceChanges } from "@/hooks/usePortfolio";
 import { SectorSubtotalRow } from "./SectorSummary";
 
 const column = createColumnHelper<PortfolioRow>();
 
-function PortfolioTable({ rows }: { rows: PortfolioRow[] }) {
+type Props = {
+  rows: PortfolioRow[];
+  changes: PriceChanges;
+  updatedAt: string;
+};
+
+function PortfolioTable({ rows, changes, updatedAt }: Props) {
   const total = totalInvestment(rows);
 
   const columns = useMemo(
@@ -54,7 +61,12 @@ function PortfolioTable({ rows }: { rows: PortfolioRow[] }) {
         header: "Gain/Loss (%)",
         cell: (info) => {
           const value = gainLossPercent(info.row.original);
-          return <span className={colorClass(value)}>{formatPercent(value)}</span>;
+          return (
+            <span className={colorClass(value)}>
+              {arrow(value)}
+              {formatPercent(value)}
+            </span>
+          );
         },
       }),
       column.accessor("peRatio", { header: "P/E (TTM)", cell: (info) => formatMoney(info.getValue()) }),
@@ -70,9 +82,9 @@ function PortfolioTable({ rows }: { rows: PortfolioRow[] }) {
   const grandTotal = summarize("Total", rows, total);
 
   return (
-    <div className="overflow-x-auto rounded-lg bg-white shadow-sm">
+    <div className="max-h-[70vh] overflow-auto rounded-xl bg-white shadow-sm dark:bg-slate-900">
       <table className="w-full text-left text-sm whitespace-nowrap">
-        <thead className="bg-emerald-900 text-white">
+        <thead className="sticky top-0 z-10 bg-slate-800 text-white dark:bg-slate-800">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -92,12 +104,33 @@ function PortfolioTable({ rows }: { rows: PortfolioRow[] }) {
               <Fragment key={sector}>
                 <SectorSubtotalRow summary={summary} />
                 {sectorRows.map((row, i) => (
-                  <tr key={row.id} className="border-b border-slate-100 hover:bg-slate-50">
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="px-3 py-2">
-                        {cell.column.id === "no" ? i + 1 : flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </td>
-                    ))}
+                  <tr key={row.id} className="border-b border-slate-100 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/60">
+                    {row.getVisibleCells().map((cell) => {
+                      if (cell.column.id === "no") {
+                        return (
+                          <td key={cell.id} className="px-3 py-2 text-slate-400">
+                            {i + 1}
+                          </td>
+                        );
+                      }
+
+                      const change = changes[row.original.name];
+                      const flash = change === "up" ? "animate-flash-up" : change === "down" ? "animate-flash-down" : "";
+
+                      if (cell.column.id === "cmp" && flash) {
+                        return (
+                          <td key={cell.id + updatedAt} className={"px-3 py-2 font-semibold " + flash}>
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </td>
+                        );
+                      }
+
+                      return (
+                        <td key={cell.id} className="px-3 py-2">
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </Fragment>

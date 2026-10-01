@@ -10,7 +10,10 @@ current price, P/E ratio and earnings are fetched live.
 - Prices refresh automatically every 15 seconds
 - Stocks grouped by sector with sector subtotals and a grand total
 - Gain/Loss shown in green or red
-- Sector cards and a pie chart for allocation
+- Summary tiles (total invested, current value, gain/loss, best and worst stock)
+- Sector cards and a donut chart for allocation
+- Live indicator, a 15 second countdown bar, and prices flash green/red when they change
+- Dark / light mode (remembers your choice)
 
 ## Tech Stack
 
@@ -46,7 +49,10 @@ lib/format.ts                 number formatting and green/red colors
 app/api/portfolio/route.ts    API route that combines everything
 components/PortfolioTable.tsx main table
 components/SectorSummary.tsx  sector cards and subtotal rows
-components/SectorChart.tsx    pie chart
+components/SectorChart.tsx    donut chart
+components/SummaryTiles.tsx   top summary tiles
+components/LiveHeader.tsx     header with live status and countdown
+components/ThemeToggle.tsx    dark / light switch
 hooks/usePortfolio.ts         fetches data every 15 seconds
 ```
 

@@ -1,5 +1,49 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --animate-countdown: countdown 15s linear forwards;
+  --animate-flash-up: flash-up 1.5s ease-out;
+  --animate-flash-down: flash-down 1.5s ease-out;
+
+  @keyframes countdown {
+    from { width: 100%; }
+    to { width: 0%; }
+  }
+
+  @keyframes flash-up {
+    from { background-color: rgb(34 197 94 / 0.45); }
+    to { background-color: transparent; }
+  }
+
+  @keyframes flash-down {
+    from { background-color: rgb(239 68 68 / 0.45); }
+    to { background-color: transparent; }
+  }
+}
+
+:root {
+  --surface: #ffffff;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #4a3aa7;
+}
+
+.dark {
+  --surface: #0f172a;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #9085e9;
+  color-scheme: dark;
+}
+
 body {
-  @apply bg-slate-100 text-slate-800;
+  @apply bg-slate-100 text-slate-800 transition-colors dark:bg-slate-950 dark:text-slate-100;
 }
