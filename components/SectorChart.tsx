@@ -35,7 +35,14 @@ function SectorChart({ summaries }: { summaries: SectorSummary[] }) {
               </Pie>
               <Tooltip
                 formatter={(value) => "₹" + formatMoney(Number(value))}
-                contentStyle={{ borderRadius: 8, border: "none", boxShadow: "0 4px 12px rgb(0 0 0 / 0.15)" }}
+                wrapperStyle={{ zIndex: 10 }}
+                contentStyle={{
+                  borderRadius: 8,
+                  border: "1px solid rgb(148 163 184 / 0.3)",
+                  background: "var(--surface)",
+                  boxShadow: "0 4px 12px rgb(0 0 0 / 0.25)",
+                }}
+                itemStyle={{ color: "inherit" }}
               />
             </PieChart>
           </ResponsiveContainer>
