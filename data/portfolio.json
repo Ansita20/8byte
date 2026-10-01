@@ -1,0 +1,33 @@
+[
+  { "name": "HDFC Bank", "sector": "Financial Sector", "purchasePrice": 1490, "qty": 50, "exchangeCode": "HDFCBANK", "yahooSymbol": "HDFCBANK.NS", "googleSymbol": "HDFCBANK:NSE" },
+  { "name": "Bajaj Finance", "sector": "Financial Sector", "purchasePrice": 6466, "qty": 15, "exchangeCode": "BAJFINANCE", "yahooSymbol": "BAJFINANCE.NS", "googleSymbol": "BAJFINANCE:NSE" },
+  { "name": "ICICI Bank", "sector": "Financial Sector", "purchasePrice": 780, "qty": 84, "exchangeCode": "532174", "yahooSymbol": "ICICIBANK.NS", "googleSymbol": "ICICIBANK:NSE" },
+  { "name": "Bajaj Housing", "sector": "Financial Sector", "purchasePrice": 130, "qty": 504, "exchangeCode": "544252", "yahooSymbol": "BAJAJHFL.NS", "googleSymbol": "BAJAJHFL:NSE" },
+  { "name": "Savani Financials", "sector": "Financial Sector", "purchasePrice": 24, "qty": 1080, "exchangeCode": "511577", "yahooSymbol": "511577.BO", "googleSymbol": "511577:BOM" },
+
+  { "name": "Affle India", "sector": "Tech Sector", "purchasePrice": 1151, "qty": 50, "exchangeCode": "AFFLE", "yahooSymbol": "AFFLE.NS", "googleSymbol": "AFFLE:NSE" },
+  { "name": "LTI Mindtree", "sector": "Tech Sector", "purchasePrice": 4775, "qty": 16, "exchangeCode": "LTIM", "yahooSymbol": "LTM.NS", "googleSymbol": "LTM:NSE" },
+  { "name": "KPIT Tech", "sector": "Tech Sector", "purchasePrice": 672, "qty": 61, "exchangeCode": "542651", "yahooSymbol": "KPITTECH.NS", "googleSymbol": "KPITTECH:NSE" },
+  { "name": "Tata Tech", "sector": "Tech Sector", "purchasePrice": 1072, "qty": 63, "exchangeCode": "544028", "yahooSymbol": "TATATECH.NS", "googleSymbol": "TATATECH:NSE" },
+  { "name": "BLS E-Services", "sector": "Tech Sector", "purchasePrice": 232, "qty": 191, "exchangeCode": "544107", "yahooSymbol": "BLSE.NS", "googleSymbol": "BLSE:NSE" },
+  { "name": "Tanla", "sector": "Tech Sector", "purchasePrice": 1134, "qty": 45, "exchangeCode": "532790", "yahooSymbol": "TANLA.NS", "googleSymbol": "TANLA:NSE" },
+
+  { "name": "Dmart", "sector": "Consumer", "purchasePrice": 3777, "qty": 27, "exchangeCode": "DMART", "yahooSymbol": "DMART.NS", "googleSymbol": "DMART:NSE" },
+  { "name": "Tata Consumer", "sector": "Consumer", "purchasePrice": 845, "qty": 90, "exchangeCode": "532540", "yahooSymbol": "TATACONSUM.NS", "googleSymbol": "TATACONSUM:NSE" },
+  { "name": "Pidilite", "sector": "Consumer", "purchasePrice": 2376, "qty": 36, "exchangeCode": "500331", "yahooSymbol": "PIDILITIND.NS", "googleSymbol": "PIDILITIND:NSE" },
+
+  { "name": "Tata Power", "sector": "Power", "purchasePrice": 224, "qty": 225, "exchangeCode": "500400", "yahooSymbol": "TATAPOWER.NS", "googleSymbol": "TATAPOWER:NSE" },
+  { "name": "KPI Green", "sector": "Power", "purchasePrice": 875, "qty": 50, "exchangeCode": "542323", "yahooSymbol": "KPIGREEN.NS", "googleSymbol": "KPIGREEN:NSE" },
+  { "name": "Suzlon", "sector": "Power", "purchasePrice": 44, "qty": 450, "exchangeCode": "532667", "yahooSymbol": "SUZLON.NS", "googleSymbol": "SUZLON:NSE" },
+  { "name": "Gensol", "sector": "Power", "purchasePrice": 998, "qty": 45, "exchangeCode": "542851", "yahooSymbol": "GENSOL.NS", "googleSymbol": "GENSOL:NSE" },
+
+  { "name": "Hariom Pipes", "sector": "Pipe Sector", "purchasePrice": 580, "qty": 60, "exchangeCode": "543517", "yahooSymbol": "HARIOMPIPE.NS", "googleSymbol": "HARIOMPIPE:NSE" },
+  { "name": "Astral", "sector": "Pipe Sector", "purchasePrice": 1517, "qty": 56, "exchangeCode": "ASTRAL", "yahooSymbol": "ASTRAL.NS", "googleSymbol": "ASTRAL:NSE" },
+  { "name": "Polycab", "sector": "Pipe Sector", "purchasePrice": 2818, "qty": 28, "exchangeCode": "542652", "yahooSymbol": "POLYCAB.NS", "googleSymbol": "POLYCAB:NSE" },
+
+  { "name": "Clean Science", "sector": "Others", "purchasePrice": 1610, "qty": 32, "exchangeCode": "543318", "yahooSymbol": "CLEAN.NS", "googleSymbol": "CLEAN:NSE" },
+  { "name": "Deepak Nitrite", "sector": "Others", "purchasePrice": 2248, "qty": 27, "exchangeCode": "506401", "yahooSymbol": "DEEPAKNTR.NS", "googleSymbol": "DEEPAKNTR:NSE" },
+  { "name": "Fine Organic", "sector": "Others", "purchasePrice": 4284, "qty": 16, "exchangeCode": "541557", "yahooSymbol": "FINEORG.NS", "googleSymbol": "FINEORG:NSE" },
+  { "name": "Gravita", "sector": "Others", "purchasePrice": 2037, "qty": 8, "exchangeCode": "533282", "yahooSymbol": "GRAVITA.NS", "googleSymbol": "GRAVITA:NSE" },
+  { "name": "SBI Life", "sector": "Others", "purchasePrice": 1197, "qty": 49, "exchangeCode": "540719", "yahooSymbol": "SBILIFE.NS", "googleSymbol": "SBILIFE:NSE" }
+]
