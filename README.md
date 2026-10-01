@@ -64,6 +64,7 @@ Open http://localhost:3000
 - Yahoo and Google don't have official free APIs, so if a value can't be fetched it shows `-`.
 - If Google Finance fails for a stock, P/E and EPS fall back to Yahoo's values.
 - LTI Mindtree is now listed as `LTM` on NSE, so that symbol is used.
-- Savani Financials is not available on Yahoo, so its CMP shows `-`.
+- Savani Financials (now called Mantra Capital) is not on Yahoo, so its price is taken from Google Finance instead.
+- Outside market hours (9:15 AM to 3:30 PM IST, Monday to Friday) prices don't move. The page shows a "Market closed" badge then.
 
 See [TECHNICAL.md](TECHNICAL.md) for the challenges I ran into and how I solved them.

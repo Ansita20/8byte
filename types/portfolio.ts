@@ -28,5 +28,6 @@ export type SectorSummary = {
 export type PortfolioResponse = {
   rows: PortfolioRow[];
   missing: string[];
+  marketOpen: boolean;
   updatedAt: string;
 };

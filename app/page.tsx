@@ -17,7 +17,16 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-7xl space-y-5 p-4 sm:p-6">
       <div>
-        <h1 className="text-2xl font-bold sm:text-3xl">Portfolio Dashboard</h1>
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-2xl font-bold sm:text-3xl">Portfolio Dashboard</h1>
+          {data.marketOpen ? (
+            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Market open</span>
+          ) : (
+            <span className="rounded-full bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-600">
+              Market closed · showing last traded prices
+            </span>
+          )}
+        </div>
         <p className="text-sm text-slate-500">
           Last updated: {new Date(data.updatedAt).toLocaleTimeString()} (refreshes every 15 seconds)
         </p>

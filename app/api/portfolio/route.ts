@@ -21,15 +21,16 @@ export async function GET() {
 
       return {
         ...h,
-        cmp: y?.cmp ?? null,
+        cmp: y?.cmp ?? g.price ?? null,
         peRatio: g.peRatio ?? y?.peRatio ?? null,
         earnings: g.earnings ?? y?.earnings ?? null,
       };
     });
 
     const missing = rows.filter((r) => r.cmp === null).map((r) => r.name);
+    const marketOpen = Object.values(yahoo).some((q) => q.marketState === "REGULAR");
 
-    return NextResponse.json({ rows, missing, updatedAt: new Date().toISOString() });
+    return NextResponse.json({ rows, missing, marketOpen, updatedAt: new Date().toISOString() });
   } catch (err) {
     console.log("portfolio api error:", err);
     return NextResponse.json({ error: "Failed to fetch market data" }, { status: 500 });

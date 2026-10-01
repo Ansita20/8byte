@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import { getCache, setCache } from "./cache";
 
 export type GoogleData = {
+  price: number | null;
   peRatio: number | null;
   earnings: number | null;
 };
@@ -16,7 +17,7 @@ export async function getGoogleData(symbol: string): Promise<GoogleData> {
   const cached = getCache<GoogleData>(cacheKey);
   if (cached) return cached;
 
-  let data: GoogleData = { peRatio: null, earnings: null };
+  let data: GoogleData = { price: null, peRatio: null, earnings: null };
 
   try {
     const res = await fetch("https://www.google.com/finance/quote/" + symbol, {
@@ -35,7 +36,12 @@ export async function getGoogleData(symbol: string): Promise<GoogleData> {
       return toNumber(labelDiv.next().text());
     };
 
+    const priceSpan = $('[jsname="Pdsbrc"] span')
+      .filter((_, el) => $(el).text().startsWith("₹"))
+      .first();
+
     data = {
+      price: toNumber(priceSpan.text()),
       peRatio: valueFor("P/E ratio"),
       earnings: valueFor("EPS"),
     };

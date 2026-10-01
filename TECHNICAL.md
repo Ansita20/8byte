@@ -43,9 +43,18 @@ load everything comes from the cache and the API answers in a few milliseconds.
 - The Excel sheet mixes NSE symbols and BSE codes. In `portfolio.json` I kept the code from the
   sheet for display and added a separate `yahooSymbol` and `googleSymbol` for each stock.
 - LTI Mindtree was renamed to **LTM** on NSE, so the old `LTIM` symbol returned nothing.
-- Savani Financials is not on Yahoo at all, so its CMP is `null`.
+- Savani Financials (renamed Mantra Capital) is not on Yahoo at all. For stocks like this the
+  CMP is read from the price shown on the Google Finance page instead. Because that comes from
+  the Google cache, it can be up to 1 hour old.
 
-## 6. Error handling
+## 6. Market hours
+
+NSE and BSE are only open from 9:15 AM to 3:30 PM IST on weekdays. Outside that, every refresh
+returns the same last traded price, which looked like the app was not updating. Yahoo returns a
+`marketState` for each quote, so the API sends `marketOpen` and the page shows a
+"Market open" or "Market closed" badge.
+
+## 7. Error handling
 
 - If a stock has no price, its row shows `-` and the sector total uses the purchase value
   for it, so totals don't break.
@@ -54,13 +63,13 @@ load everything comes from the cache and the API answers in a few milliseconds.
   retries on the next 15 second tick.
 - A disclaimer at the bottom says the data comes from unofficial sources.
 
-## 7. Performance
+## 8. Performance
 
 - `PortfolioTable`, `SectorCards` and `SectorChart` are wrapped in `React.memo`.
 - Table columns and sector summaries are built with `useMemo`.
 - The pie chart animation is turned off so it doesn't redraw itself every 15 seconds.
 
-## 8. Security
+## 9. Security
 
 There are no API keys. All fetching and scraping happens in the Next.js API route on the
 server, so the browser only talks to `/api/portfolio`.
