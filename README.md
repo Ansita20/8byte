@@ -3,6 +3,10 @@
 A dashboard for my stock portfolio. Holdings are taken from my Excel sheet, but the
 current price, P/E ratio and earnings are fetched live.
 
+**Live demo:** https://eightbyte-ye1d.onrender.com
+
+> Hosted on Render's free plan, so the first load after it has been idle can take up to a minute while the server wakes up.
+
 ## Features
 
 - CMP (current market price) from Yahoo Finance using `yahoo-finance2`
@@ -62,6 +66,7 @@ Open http://localhost:3000
 - Yahoo and Google don't have official free APIs, so if a value can't be fetched it shows `-`.
 - If Google Finance fails for a stock, P/E and EPS fall back to Yahoo's values.
 - LTI Mindtree is now listed as `LTM` on NSE, so that symbol is used.
+- Some stocks (like LTI Mindtree and Gensol) have no P/E or EPS on Google Finance, so they show `-` when Yahoo doesn't return them either.
 - Savani Financials (now called Mantra Capital) is not on Yahoo, so its price is taken from Google Finance instead.
 - Outside market hours (9:15 AM to 3:30 PM IST, Monday to Friday) prices don't move. The page shows a "Market closed" badge then.
 
