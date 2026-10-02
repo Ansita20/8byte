@@ -19,7 +19,7 @@ current price, P/E ratio and earnings are fetched live.
 
 - Next.js (App Router) + TypeScript
 - TanStack Table for the table
-- Recharts for the pie chart
+- Recharts for the donut chart
 - Tailwind CSS for styling
 
 ## How it works
@@ -65,7 +65,7 @@ flowchart LR
 data/portfolio.json           holdings from the Excel sheet
 types/portfolio.ts            TypeScript types
 lib/yahoo.ts                  gets CMP for all symbols
-lib/google.ts                 scrapes P/E and EPS for one symbol
+lib/google.ts                 scrapes P/E, EPS (and a backup price) for one symbol
 lib/cache.ts                  simple in-memory cache with TTL
 lib/calculations.ts           investment, present value, gain/loss, sector totals
 lib/format.ts                 number formatting and green/red colors
