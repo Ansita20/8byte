@@ -28,7 +28,10 @@ export async function GET() {
     });
 
     const missing = rows.filter((r) => r.cmp === null).map((r) => r.name);
-    const marketOpen = Object.values(yahoo).some((q) => q.marketState === "REGULAR");
+    const fifteenMinutes = 15 * 60 * 1000;
+    const marketOpen = Object.values(yahoo).some(
+      (q) => q.marketState === "REGULAR" && q.lastTradeTime !== null && Date.now() - q.lastTradeTime < fifteenMinutes
+    );
 
     return NextResponse.json({ rows, missing, marketOpen, updatedAt: new Date().toISOString() });
   } catch (err) {

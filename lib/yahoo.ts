@@ -6,6 +6,7 @@ const yahooFinance = new YahooFinance({ suppressNotices: ["yahooSurvey"] });
 export type YahooQuote = {
   cmp: number | null;
   marketState: string | null;
+  lastTradeTime: number | null;
   peRatio: number | null;
   earnings: number | null;
 };
@@ -22,6 +23,7 @@ export async function getYahooQuotes(symbols: string[]) {
       result[q.symbol] = {
         cmp: q.regularMarketPrice ?? null,
         marketState: q.marketState ?? null,
+        lastTradeTime: q.regularMarketTime ? new Date(q.regularMarketTime).getTime() : null,
         peRatio: q.trailingPE ?? null,
         earnings: q.epsTrailingTwelveMonths ?? null,
       };
