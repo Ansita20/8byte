@@ -22,37 +22,6 @@ current price, P/E ratio and earnings are fetched live.
 - Recharts for the donut chart
 - Tailwind CSS for styling
 
-## How it works
-
-```mermaid
-flowchart LR
-    subgraph Browser
-        Page["page.tsx<br/>tiles, cards, table, chart"]
-        Hook["usePortfolio hook<br/>fetch every 15s"]
-    end
-
-    subgraph Server["Next.js server"]
-        Route["/api/portfolio<br/>route.ts"]
-        Json[("portfolio.json<br/>26 holdings")]
-        Cache[("in-memory cache<br/>CMP 15s · P/E, EPS 1h")]
-        Yahoo["yahoo.ts<br/>yahoo-finance2"]
-        Google["google.ts<br/>fetch + cheerio"]
-    end
-
-    YF(("Yahoo Finance"))
-    GF(("Google Finance"))
-
-    Page --> Hook
-    Hook -- "GET every 15s" --> Route
-    Route --> Json
-    Route --> Yahoo
-    Route --> Google
-    Yahoo <--> Cache
-    Google <--> Cache
-    Yahoo -- "1 batch request" --> YF
-    Google -- "scrape HTML page" --> GF
-    Route -- "JSON rows" --> Hook
-```
 
 1. The page calls `/api/portfolio` every 15 seconds.
 2. The API route reads the holdings and asks Yahoo (CMP) and Google (P/E, EPS) in parallel.
