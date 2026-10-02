@@ -24,17 +24,40 @@ current price, P/E ratio and earnings are fetched live.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    subgraph Browser
+        Page["page.tsx<br/>tiles, cards, table, chart"]
+        Hook["usePortfolio hook<br/>fetch every 15s"]
+    end
+
+    subgraph Server["Next.js server"]
+        Route["/api/portfolio<br/>route.ts"]
+        Json[("portfolio.json<br/>26 holdings")]
+        Cache[("in-memory cache<br/>CMP 15s · P/E, EPS 1h")]
+        Yahoo["yahoo.ts<br/>yahoo-finance2"]
+        Google["google.ts<br/>fetch + cheerio"]
+    end
+
+    YF(("Yahoo Finance"))
+    GF(("Google Finance"))
+
+    Page --> Hook
+    Hook -- "GET every 15s" --> Route
+    Route --> Json
+    Route --> Yahoo
+    Route --> Google
+    Yahoo <--> Cache
+    Google <--> Cache
+    Yahoo -- "1 batch request" --> YF
+    Google -- "scrape HTML page" --> GF
+    Route -- "JSON rows" --> Hook
 ```
-Browser (React page)
-   │  every 15s: GET /api/portfolio
-   ▼
-Next.js API route
-   ├── reads data/portfolio.json
-   ├── Yahoo Finance  → CMP
-   ├── Google Finance → P/E, EPS
-   ├── caches results (CMP 15s, P/E and EPS 1 hour)
-   └── returns JSON → browser calculates and shows the table
-```
+
+1. The page calls `/api/portfolio` every 15 seconds.
+2. The API route reads the holdings and asks Yahoo (CMP) and Google (P/E, EPS) in parallel.
+3. Both fetchers check the cache first, so Yahoo is hit at most every 15 seconds and Google once an hour per stock.
+4. The route returns clean JSON, and the browser calculates investment, gain/loss and sector totals.
 
 ## Folder structure
 
