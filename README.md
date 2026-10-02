@@ -5,8 +5,6 @@ current price, P/E ratio and earnings are fetched live.
 
 **Live demo:** https://eightbyte-ye1d.onrender.com
 
-> Hosted on Render's free plan, so the first load after it has been idle can take up to a minute while the server wakes up.
-
 ## Features
 
 - CMP (current market price) from Yahoo Finance using `yahoo-finance2`
